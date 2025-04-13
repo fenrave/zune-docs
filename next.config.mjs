@@ -34,5 +34,5 @@ export default nextra({
   },
   reactStrictMode: true,
   output: 'export',
-  basePath: '/zune-docs',
+  basePath: '/',
 })
