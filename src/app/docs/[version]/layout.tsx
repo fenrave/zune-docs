@@ -1,0 +1,44 @@
+import type { Metadata } from 'next';
+import { Head, Banner, Image } from 'nextra/components';
+import { Layout, Footer, Navbar, NotFoundPage } from "nextra-theme-docs";
+import { getPageMap } from 'nextra/page-map';
+import '../../styles/global.css';
+import { generateStaticParamsFor } from 'nextra/pages';
+
+export async function generateStaticParams() {
+    return (await getPageMap("/docs/")).map((page) => ({ version: (page as any).name }));;
+}
+
+export const metadata: Metadata = {
+    title: {
+        absolute: '',
+        template: 'ZUNE - %s'
+    }
+}
+
+export default async function ({ children, params }) {
+    const { version } = await params
+    let pageMap;
+    try {
+        pageMap = await getPageMap("/docs/" + version);
+        if (pageMap === undefined)
+            throw new Error("Page map not found");
+    } catch (error) {
+        return <NotFoundPage content={null} >
+            <h1 className='next-error-h1 inline-block font-medium align-top'>404</h1>
+            <h1>The page is not found</h1>
+        </NotFoundPage>
+    }
+    return (
+        <Layout
+            navbar={<></>}
+            footer={<></>}
+            editLink="Edit this page on GitHub"
+            docsRepositoryBase="https://github.com/Scythe-Technology/zune-docs/blob/master"
+            pageMap={pageMap}
+            feedback={{ content: null }}
+        >
+            {children}
+        </Layout>
+    )
+}
