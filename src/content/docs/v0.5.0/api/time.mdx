@@ -1,0 +1,160 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# Time
+`zune.time`
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+A library to interact with date and time.
+
+## Functions
+### timestamp
+Returns the current unix timestamp in seconds.
+```luau tooltips
+timestamp(): number
+```
+
+### timestampMillis
+Returns the current unix timestamp in milliseconds.
+```luau tooltips
+timestampMillis(): number
+```
+
+## Namespaces
+### date
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### now
+```luau tooltips
+-- @link: (13,21)[../objects/DateTime]
+date.now(): DateTime
+```
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+#### fromIsoDate
+Parse a string in ISO8601 format, `YYYY-MM-DDTHH:MM:SSZ`.
+```luau tooltips
+-- @link: (33,41)[../objects/DateTime]
+date.fromIsoDate(date: string): DateTime
+```
+<details open>
+<summary>Parameters</summary>
+- `date: string{:luau}` - The date string to parse.
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+#### fromUnixTimestamp
+```luau tooltips
+-- @link: (44,52)[../objects/DateTime]
+date.fromUnixTimestamp(timestamp: number): DateTime
+```
+<details open>
+<summary>Parameters</summary>
+- `timestamp: number{:luau}` - The unix timestamp in seconds.
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+#### fromUnixTimestampMillis
+```luau tooltips
+-- @link: (50,58)[../objects/DateTime]
+date.fromUnixTimestampMillis(timestamp: number): DateTime
+```
+<details open>
+<summary>Parameters</summary>
+- `timestamp: number{:luau}` - The unix timestamp in milliseconds.
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+#### fromLocalTime
+```luau tooltips
+-- @link: (130,138)[../objects/DateTime]
+date.fromLocalTime(year: number, month: number, day: number, hour: number, minute: number, second: number, millisecond: number): DateTime
+```
+<details open>
+<summary>Parameters</summary>
+- `year: number{:luau}`
+- `month: number{:luau}`
+- `day: number{:luau}`
+- `hour: number{:luau}`
+- `minute: number{:luau}`
+- `second: number{:luau}`
+- `millisecond: number{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+#### fromUniversalTime
+```luau tooltips
+-- @link: (134,142)[../objects/DateTime]
+date.fromUniversalTime(year: number, month: number, day: number, hour: number, minute: number, second: number, millisecond: number): DateTime
+```
+<details open>
+<summary>Parameters</summary>
+- `year: number{:luau}`
+- `month: number{:luau}`
+- `day: number{:luau}`
+- `hour: number{:luau}`
+- `minute: number{:luau}`
+- `second: number{:luau}`
+- `millisecond: number{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+#### parse
+Parse a date string.
+- Supports ISO8601 format, `YYYY-MM-DDTHH:MM:SSZ`.
+- Supports RFC3339 format, `YYYY-MM-DDTHH:MM:SS+00:00`.
+- Supports RFC2822 format, `Day, DD Mon YYYY HH:MM:SS GMT`.
+```luau tooltips
+-- @link: (27,35)[../objects/DateTime]
+date.parse(date: string): DateTime
+```
+<details open>
+<summary>Parameters</summary>
+- `date: string{:luau}` - The date string to parse.
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+### instant
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### now
+Returns a timespec in a buffer form, first 8 bytes are seconds,
+next 4 bytes are nanoseconds.
+buffer should always be 12 bytes long.
+```luau tooltips
+instant.now(): buffer
+```
+<details>
+<summary>Throws</summary>
+- Time Error
+- Memory Error
+</details>

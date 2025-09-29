@@ -1,0 +1,90 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# DateTime
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+## Properties
+### timestamp
+```luau tooltips
+timestamp: number
+```
+### timestamp_millis
+```luau tooltips
+timestamp_millis: number
+```
+## Methods
+### toLocalTime
+```luau tooltips
+-- @hover: (17,31)[export type TimeDictionary = {
+    year: number,
+    month: number,
+    day: number,
+    hour: number,
+    minute: number,
+    second: number,
+    millisecond: number, 
+}]
+:toLocalTime(): TimeDictionary
+```
+<details>
+<summary>Throws</summary>
+- DateTime Error
+</details>
+
+### toUniversalTime
+```luau tooltips
+-- @hover: (21,35)[export type TimeDictionary = {
+    year: number,
+    month: number,
+    day: number,
+    hour: number,
+    minute: number,
+    second: number,
+    millisecond: number, 
+}]
+:toUniversalTime(): TimeDictionary
+```
+<details>
+<summary>Throws</summary>
+- DateTime Error
+</details>
+
+### toIsoDate
+Return the date in ISO8601 format, `YYYY-MM-DDTHH:MM:SSZ`
+```luau tooltips
+:toIsoDate(): string
+```
+<details>
+<summary>Throws</summary>
+- DateTime Error
+</details>
+
+### formatLocalTime
+```luau tooltips
+:formatLocalTime(format: string): string
+```
+<details open>
+<summary>Parameters</summary>
+- `format: string{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>
+
+### formatUniversalTime
+```luau tooltips
+:formatUniversalTime(format: string): string
+```
+<details open>
+<summary>Parameters</summary>
+- `format: string{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- DateTime Error
+- Memory Error
+</details>

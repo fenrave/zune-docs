@@ -1,0 +1,223 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# Process
+`zune.process`
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+A library that interacts with the system process.
+
+## Properties
+### args
+The arguments passed to the process.
+```luau tooltips
+args: {string}
+```
+### env
+The process enviroment table.
+
+(Loaded from top to bottom)
+- Includes `.env` file in the current working directory.
+- Includes `.env.production` file in the current working directory. When `LUAU_ENV` is set to `PRODUCTION`.
+- Includes `.env.development` file in the current working directory. When `LUAU_ENV` is set to `DEVELOPMENT`.
+- Includes `.env.test` file in the current working directory. When `LUAU_ENV` is set to `TEST`.
+- Includes `.env.local` file in the current working directory.
+```luau tooltips
+-- @hover: (7,12)[<table> = {
+    [string]: string
+}]
+env: <table>
+```
+## Functions
+### loadEnv
+Same behavior as `process.env`, does not update `process.env`.
+```luau tooltips
+loadEnv(): {[string]: string}
+```
+<details>
+<summary>Throws</summary>
+- IO Error
+- Memory Error
+</details>
+
+### cwd
+Get the current working directory (absolute path).
+```luau tooltips
+cwd(): string
+```
+<details>
+<summary>Throws</summary>
+- IO Error
+- Memory Error
+</details>
+
+### pid
+Get the current process ID.
+```luau tooltips
+pid(): number
+```
+
+### create
+Creates a new process.
+```luau tooltips
+-- @hover: (45,59)[export type ProcessOptions = {
+    cwd: string?,
+    env: {
+        [string]: string
+    }?,
+    shell: (boolean | string)?,
+    stdin: ("inherit" | "pipe" | "ignore")?,
+    stdout: ("inherit" | "pipe" | "ignore")?,
+    stderr: ("inherit" | "pipe" | "ignore")?, 
+}]
+-- @link: (63,75)[../objects/ProcessChild]
+create(exec: string, args: {string}?, opts: ProcessOptions?): ProcessChild
+```
+<details open>
+<summary>Parameters</summary>
+- `exec: string{:luau}` - The executable to run.
+- `args: {string}?{:luau}` - The arguments to pass to the executable.
+- `opts: ProcessOptions?{:luau}` - The options for the process.
+  - `cwd: string?{:luau}` - The current working directory of the process.
+  - `env: {[string]: string}?{:luau}` - The environment variables to set for the process.
+  - `shell: (boolean | string)?{:luau}` - The shell to use, `true` would use the common shell for your os.
+  - `stdin: ("inherit" | "pipe" | "ignore")?{:luau}` - The stdin configuration for the process.
+  - `stdout: ("inherit" | "pipe" | "ignore")?{:luau}` - The stdout configuration for the process.
+  - `stderr: ("inherit" | "pipe" | "ignore")?{:luau}` - The stderr configuration for the process.
+</details>
+<details>
+<summary>Throws</summary>
+- Process Error
+</details>
+
+### run
+Runs a new process, and yields for the result.
+```luau tooltips
+-- @hover: (20,36)[export type ProcessResult = {
+    ok: boolean,
+    code: number, 
+}
+
+export type ProcessRunResult<T> = ProcessResult & {
+    stdout: T,
+    stderr: T, 
+}]
+run(exec: string): ProcessRunResult<string>
+-- @hover: (37,53)[export type ProcessResult = {
+    ok: boolean,
+    code: number, 
+}
+
+export type ProcessRunResult<T> = ProcessResult & {
+    stdout: T,
+    stderr: T, 
+}]
+run(exec: string, args: {string}?): ProcessRunResult<string>
+-- @hover: (42,56)[export type ProcessOptions = {
+    cwd: string?,
+    env: {
+        [string]: string
+    }?,
+    shell: (boolean | string)?,
+    stdin: ("inherit" | "pipe" | "ignore")?,
+    stdout: ("inherit" | "pipe" | "ignore")?,
+    stderr: ("inherit" | "pipe" | "ignore")?, 
+}]
+-- @hover: (75,91)[export type ProcessResult = {
+    ok: boolean,
+    code: number, 
+}
+
+export type ProcessRunResult<T> = ProcessResult & {
+    stdout: T,
+    stderr: T, 
+}]
+run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: false?): ProcessRunResult<string?>
+-- @hover: (42,56)[export type ProcessOptions = {
+    cwd: string?,
+    env: {
+        [string]: string
+    }?,
+    shell: (boolean | string)?,
+    stdin: ("inherit" | "pipe" | "ignore")?,
+    stdout: ("inherit" | "pipe" | "ignore")?,
+    stderr: ("inherit" | "pipe" | "ignore")?, 
+}]
+-- @hover: (73,89)[export type ProcessResult = {
+    ok: boolean,
+    code: number, 
+}
+
+export type ProcessRunResult<T> = ProcessResult & {
+    stdout: T,
+    stderr: T, 
+}]
+run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: true): ProcessRunResult<buffer?>
+-- @hover: (42,56)[export type ProcessOptions = {
+    cwd: string?,
+    env: {
+        [string]: string
+    }?,
+    shell: (boolean | string)?,
+    stdin: ("inherit" | "pipe" | "ignore")?,
+    stdout: ("inherit" | "pipe" | "ignore")?,
+    stderr: ("inherit" | "pipe" | "ignore")?, 
+}]
+-- @hover: (77,93)[export type ProcessResult = {
+    ok: boolean,
+    code: number, 
+}
+
+export type ProcessRunResult<T> = ProcessResult & {
+    stdout: T,
+    stderr: T, 
+}]
+run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: boolean?): ProcessRunResult<string | buffer?>
+```
+<details open>
+<summary>Parameters</summary>
+- `exec: string{:luau}` - The executable to run.
+- `args: {string}?{:luau}` - The arguments to pass to the executable.
+- `opts: ProcessOptions?{:luau}` - The options for the process.
+  - `cwd: string?{:luau}` - The current working directory of the process.
+  - `env: {[string]: string}?{:luau}` - The environment variables to set for the process.
+  - `shell: (boolean | string)?{:luau}` - The shell to use, `true` would use the common shell for your os.
+  - `stdin: ("inherit" | "pipe" | "ignore")?{:luau}` - The stdin configuration for the process.
+  - `stdout: ("inherit" | "pipe" | "ignore")?{:luau}` - The stdout configuration for the process.
+  - `stderr: ("inherit" | "pipe" | "ignore")?{:luau}` - The stderr configuration for the process.
+- `bytes: false? | true | boolean?{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- Process Error
+</details>
+
+### exit
+Exits the process with the given code.
+```luau tooltips
+exit(code: number): never
+```
+<details open>
+<summary>Parameters</summary>
+- `code: number{:luau}` - The exit code.
+</details>
+
+### onSignal
+Registers a signal handler.
+
+Supported signals:
+- `INT` - Interrupt signal (SIGINT).
+```luau tooltips
+onSignal(signal: "INT", callback: () -> ()): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `signal: "INT"{:luau}` - The signal to handle.
+- `callback: () -> (){:luau}` - The callback to call when the signal is received.
+</details>
+<details>
+<summary>Throws</summary>
+- Process Error
+- Thread Error
+</details>

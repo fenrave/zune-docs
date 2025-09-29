@@ -1,0 +1,312 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# FFIPointer
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+## Methods
+### release
+```luau tooltips
+-- @link: (13,23)[../objects/FFIPointer]
+:release(): FFIPointer
+```
+
+### retain
+```luau tooltips
+-- @link: (12,22)[../objects/FFIPointer]
+:retain(): FFIPointer
+```
+
+### tag
+```luau tooltips
+:tag(): number
+-- @link: (20,30)[../objects/FFIPointer]
+:tag(tag: number): FFIPointer
+```
+<details open>
+<summary>Parameters</summary>
+- `tag: number?{:luau}`
+</details>
+
+### drop
+```luau tooltips
+-- @link: (10,20)[../objects/FFIPointer]
+:drop(): FFIPointer
+```
+
+### offset
+```luau tooltips
+-- @link: (26,36)[../objects/FFIPointer]
+:offset(offset: number): FFIPointer
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+</details>
+
+### read
+```luau tooltips
+-- @link: (41,51)[../objects/FFIPointer]
+:read(srcOffset: number, dest: buffer | FFIPointer, destOffset: number, count: number): buffer
+```
+<details open>
+<summary>Parameters</summary>
+- `srcOffset: number{:luau}`
+- `dest: buffer | FFIPointer{:luau}`
+- `destOffset: number{:luau}`
+- `count: number{:luau}`
+</details>
+
+### write
+```luau tooltips
+-- @link: (42,52)[../objects/FFIPointer]
+:write(destOffset: number, src: buffer | FFIPointer, srcOffset: number, count: number): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `destOffset: number{:luau}`
+- `src: buffer | FFIPointer{:luau}`
+- `srcOffset: number{:luau}`
+- `count: number{:luau}`
+</details>
+
+### readi8
+```luau tooltips
+:readi8(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readi16
+```luau tooltips
+:readi16(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readi32
+```luau tooltips
+:readi32(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readi64
+```luau tooltips
+:readi64(offset: number?): buffer
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readu8
+```luau tooltips
+:readu8(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readu16
+```luau tooltips
+:readu16(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readu32
+```luau tooltips
+:readu32(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readu64
+```luau tooltips
+:readu64(offset: number?): buffer
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readf32
+```luau tooltips
+:readf32(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readf64
+```luau tooltips
+:readf64(offset: number?): number
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### readptr
+```luau tooltips
+-- @link: (28,38)[../objects/FFIPointer]
+:readptr(offset: number?): FFIPointer
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>
+
+### writei8
+```luau tooltips
+:writei8(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writei16
+```luau tooltips
+:writei16(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writei32
+```luau tooltips
+:writei32(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writei64
+```luau tooltips
+:writei64(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writeu8
+```luau tooltips
+:writeu8(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writeu16
+```luau tooltips
+:writeu16(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writeu32
+```luau tooltips
+:writeu32(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writeu64
+```luau tooltips
+:writeu64(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writef32
+```luau tooltips
+:writef32(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writef64
+```luau tooltips
+:writef64(offset: number, value: number | buffer | boolean): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: number | buffer | boolean{:luau}`
+</details>
+
+### writeptr
+```luau tooltips
+-- @link: (34,44)[../objects/FFIPointer]
+:writeptr(offset: number, value: FFIPointer): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number{:luau}`
+- `value: FFIPointer{:luau}`
+</details>
+
+### size
+```luau tooltips
+:size(): number?
+:size(size: number): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `size: number?{:luau}`
+</details>
+
+### alignment
+```luau tooltips
+:alignment(): number?
+:alignment(alignment: number): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `alignment: number?{:luau}`
+</details>
+
+### span
+```luau tooltips
+:span(offset: number?): buffer
+```
+<details open>
+<summary>Parameters</summary>
+- `offset: number?{:luau}`
+</details>

@@ -1,0 +1,193 @@
+# Bundle Command
+---
+import { FileTree, Callout } from 'nextra/components'
+
+The `bundle` command is used to bundle scripts and files into a standalone executable with zune.
+
+`zune.toml` settings are also applied into the bundled build, allowing custom formatting settings, color settings, etc.
+(none of the source data of `zune.toml` is stored in the bundled build, only the configured settings).
+
+The command bundles all scripts and files with path names in the final build.
+All final paths in the executable are always relative to the current working directory.
+
+If you build outside of the home directory, there is a chance unwanted path names would be embedded in the final build (this can be disabled).
+`zune` would also print a warning but won't error.
+
+`zune` would only embed the home path relative to the current working directory. This is to allow you to use `~` in `.luaurc`.
+
+Requires should also work with bundled builds if you bundle with all your necessary scripts.
+
+### Usage
+
+```bash
+zune bundle [...flags or files]
+```
+- `[...flags or files]` - flags & files to use for the bundle command.
+
+The first source obtained by exact path or glob pattern would be the entry file that zune would execute, it is recommended to define the entry file first.
+
+The last flags would take priority.
+
+### Example
+```bash
+zune bundle src/main.luau src/**/*.luau -f **/*.png **/*.html --out=build/myproject
+```
+<FileTree>
+  <FileTree.File name="zune.toml" />
+  <FileTree.Folder name="build" active={true} defaultOpen>
+    <FileTree.File name="myproject" active={true} />
+  </FileTree.Folder>
+  <FileTree.Folder name="src" defaultOpen>
+    <FileTree.Folder name="assets" defaultOpen>
+        <FileTree.File name="icon.png" />
+        <FileTree.File name="page.html" />
+    </FileTree.Folder>
+    <FileTree.Folder name="modules" defaultOpen>
+        <FileTree.File name="a.luau" />
+        <FileTree.File name="b.luau" />
+    </FileTree.Folder>
+    <FileTree.File name="main.luau" />
+    <FileTree.File name="utils.luau" />
+  </FileTree.Folder>
+</FileTree>
+
+## Flags
+
+### Read
+This flag is the only one that must be explicitly first and the path to the bundled app provided after.
+
+This would read the bundled app, and output information about the app, but only showing size, bundle format information, main entry file name, etc.
+
+In cases if an invalid bundled app is provided, `--read` flag would display if whether the bundle does not exist or is corrupted.
+
+Useful for validating the bundle, inspecting size/usage and entry script.
+```bash
+zune bundle --read <executable>
+```
+
+---
+
+All luau flags, like optimization level, debug level, native code generation, etc. are supported, this would be reflected on the final bundled build.
+
+### Optimization Level
+```bash
+zune bundle -O=0|1|2 ...
+```
+
+### Debug Level
+```bash
+zune bundle -g=0|1|2 ...
+```
+
+### Native
+Enables native code generation by default. This is the default behavior.
+```bash
+zune bundle --native ...
+```
+
+### No-native
+Stops zune from using native code generation by default.
+This does not remove the native code generation, checkout [no-jit flag](#no-jit).
+```bash
+zune bundle --no-native ...
+```
+
+### No-jit
+Disables native code generation entirely.
+```bash
+zune bundle --no-jit ...
+```
+
+### Limbo
+Disables all of builtin libraries.
+```bash
+zune bundle --limbo ...
+```
+
+### No-fmt
+Disables print formatting
+```bash
+zune bundle --no-fmt ...
+```
+
+### Out
+When provided, zune would make recursively make directories (if needed) and override existing file (if it exists)
+to the specified path.
+
+If not provided, the default name would be the entry script name (if the default file exists, an error would be displayed).
+```bash
+zune bundle --out=<path> ...
+```
+
+### Exe
+zune would bundle the scripts and files with the provided path.
+```bash
+zune bundle --exe=<path> ...
+```
+
+### Release
+zune would embed pre-compiled luau bytecode instead of luau source code of all scripts.
+```bash
+zune bundle --release ...
+```
+
+### Debug
+zune would embed luau source code of all scripts.
+
+Useful for making debug builds and using detailed error features.
+
+<Callout type="default">This is the default behavior</Callout>
+```bash
+zune bundle --debug ...
+```
+
+### No_home
+Disables embedding the home path in the final build.
+```bash
+zune bundle --no_home ...
+```
+
+### Home
+Sets a custom home path to embed in the final build.
+```bash
+zune bundle --home=<path> ...
+```
+
+### Compression
+Uses the specified compression algorithm to compress each file in the final build.
+This can reduce the size of embedded files, and would be decompressed at runtime, whenever the file is used.
+
+At times it is better to use this command when working with pretty medium or large files.
+```bash
+zune bundle --compression=<zlib|lz4|zstd|gzip|flate> ...
+```
+
+## Sources
+
+### Scripts
+When you pass `--scripts` or `-s` to the command,
+all file arguments after this flag would be stored as `scripts` in the bundled app.
+
+<Callout type="default">This is the default when passing file arguments without explicitly using `--files`/`-f`</Callout>
+<Callout type="info">The file must have a `.luau` or `.lua` file extension</Callout>
+
+#### Example
+```bash
+zune bundle main.luau a.luau -s b.luau c.luau --scripts d.luau **/*.luau
+```
+
+### Files
+When you pass `--files` or `-f` to the command,
+all file arguments after this flag would be stored as `files` in the bundled app.
+
+<Callout type="info">If you are embedding a `luau`/`lua` file, you must NOT have the file included as a script before or after</Callout>
+
+#### Example
+```bash
+zune bundle main.luau -f a.txt b.png --files c.luau **/*.md
+```
+
+#### Scripts & Files Example
+```bash
+zune bundle -f a.txt -s main.luau b.luau --files c --scripts d.luau
+```

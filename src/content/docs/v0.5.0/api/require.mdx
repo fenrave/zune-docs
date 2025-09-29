@@ -1,0 +1,40 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# Require
+`zune.require`
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+A library to use zune's require resolver in luau.
+
+## Functions
+### navigate
+```luau tooltips
+navigate(path: string | buffer, from: (string | buffer)?, config: string | buffer?): string
+```
+<details open>
+<summary>Parameters</summary>
+- `path: string | buffer{:luau}` - The path to navigate to.
+- `from: (string | buffer)?{:luau}` - The path to navigate from. Defaults to the current file.
+- `config: string | buffer?{:luau}` - The configuration to use.
+</details>
+<details>
+<summary>Throws</summary>
+- Require Error
+- Memory Error
+</details>
+
+### getCached
+```luau tooltips
+getCached(resolvedPath: string): any?
+```
+<details open>
+<summary>Parameters</summary>
+- `resolvedPath: string{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- Require Error
+- Memory Error
+</details>

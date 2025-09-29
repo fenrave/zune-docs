@@ -1,0 +1,119 @@
+# Globals
+---
+
+Globals are available in every module. The listed globals are modified by the zune backend, refer to the [luau globals](https://luau.org/library#global-functions)
+for the rest of the globals.
+
+## Variables
+### zune
+The global `zune` variable is a table that contains all the zune apis.
+```luau tooltips
+-- @hover: (8,13)[{
+    compiled: {
+        optimize: number,
+        debug: number,
+        mode: "debug" | "release",
+    }?,
+-- @link: (9,22)[./fs]
+    fs: FileSystemLib,
+-- @link: (14,24)[./process]
+    process: ProcessLib,
+-- @link: (14,24)[./testing]
+    testing: TestingLib,
+-- @link: (11,18)[./task]
+    task: TaskLib,
+-- @link: (10,20)[./net]
+    net: NetworkLib,
+-- @link: (11,18)[./luau]
+    luau: LuauLib,
+-- @link: (12,20)[./serde]
+    serde: SerdeLib,
+-- @link: (9,14)[./io]
+    io: IoLib,
+-- @link: (13,22)[./crypto]
+    crypto: CryptoLib,
+-- @link: (12,20)[./regex]
+    regex: RegexLib,
+-- @link: (11,18)[./time]
+    time: TimeLib,
+-- @link: (10,16)[./ffi]
+    ffi: FFILib,
+-- @link: (13,22)[./sqlite]
+    sqlite: SQLiteLib,
+-- @link: (14,24)[./require]
+    require: RequireLib,
+-- @link: (13,22)[./random]
+    random: RandomLib,
+-- @link: (13,22)[./thread]
+    thread: ThreadLib,
+-- @link: (10,16)[./mem]
+    mem: MemLib
+-- @link: (15,26)[./platform]
+    platform: PlatformLib
+}]
+zune: <table>
+```
+
+### _VERSION
+```luau
+_VERSION: string
+```
+The version of the Luau runtime.
+In zune, this should idealy be
+
+`zune <zune version>[-buildtag]+<luau version>`
+
+`zune <major>.<minor>.<patch>[-buildtag]+<major>.<minor>`
+
+examples:
+- `zune 0.1.0+0.640`
+- `zune 0.1.0-dev.1234567+0.640`
+
+The following code example shows how to detect if zune is running and provide the zune version with the Luau version.
+```luau filename="detect_zune.luau" showLineNumbers
+local pattern = "zune (%d+%.%d+%.%d+)%-?([%.%w%d]*)%+(%d+%.%d+)"
+
+local zuneVersion, buildTag, luauVersion = string.match(_VERSION, pattern)
+
+if (zuneVersion) then
+    print(`zune Version: {zuneVersion}-{buildTag}`)
+    print(`luau Version: {luauVersion}`)
+end
+```
+
+### _FILE
+The file information of the current running module.
+`_FILE` variable may not be available in all cases, such as executing luau in a custom environment.
+```luau tooltips
+-- @hover: (9,14)[{
+   main: boolean,
+}]
+_FILE: <table>
+```
+
+## Functions
+### print
+Writes formatted values to `stderr`. `stderr` is the default for debugging.
+To write into `stdout`, use `io.stdout`.
+```luau
+print(...any): ()
+```
+
+### require
+Luau require function, used to load modules.
+
+Based on the [Luau RFC](https://rfcs.luau.org/amended-require-resolution.html).
+
+examples:
+- `require("./module"){:luau}`
+- `require("@alias/module"){:luau}`
+- `require("../module"){:luau}`
+```luau
+require(path: string): any
+```
+<details>
+<summary>Throws</summary>
+- IO Error
+- Memory Error
+- Resolve Error
+</details>

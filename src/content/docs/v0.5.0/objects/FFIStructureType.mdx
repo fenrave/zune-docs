@@ -1,0 +1,34 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# FFIStructureType
+extends [`FFIDataType{:luau}`](../objects/FFIDataType)
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+## Methods
+### offset
+Get the offset of a field in the structure.
+```luau tooltips
+:offset(field: string): number
+```
+<details open>
+<summary>Parameters</summary>
+- `field: string{:luau}` - The field to get the offset of.
+</details>
+
+### new
+Creates a new instance of the structure.
+```luau tooltips
+-- @link: (43,53)[../objects/FFIPointer]
+:new(fields: {[string]: buffer | number | FFIPointer | vector}): buffer
+```
+<details open>
+<summary>Parameters</summary>
+- `fields: { [string]: buffer | number | FFIPointer | vector }{:luau}` - The fields to set in the structure.
+</details>
+<details>
+<summary>Throws</summary>
+- FFI Error
+- Memory Error
+</details>

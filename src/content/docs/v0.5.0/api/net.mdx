@@ -1,0 +1,553 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# Network
+`zune.net`
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+A library to do networking in luau. Provides functions to create sockets, start an HTTP server, make HTTP requests, and handle WebSockets.
+
+## Properties
+### ADDRF
+The table of address families.
+```luau tooltips
+-- @hover: (9,14)[<table> = {
+    RDS: number,
+    ROSE: number,
+    BRIDGE: number,
+    PHONET: number,
+    SNA: number,
+    FILE: number,
+    MPLS: number,
+    ROUTE: number,
+    WANPIPE: number,
+    UNSPEC: number,
+    CAIF: number,
+    NETROM: number,
+    UNIX: number,
+    INET: number,
+    ATMSVC: number,
+    MAX: number,
+    NETLINK: number,
+    IUCV: number,
+    SMC: number,
+    INET6: number,
+    TIPC: number,
+    KEY: number,
+    QIPCRTR: number,
+    VSOCK: number,
+    IPX: number,
+    ASH: number,
+    IB: number,
+    PACKET: number,
+    KCM: number,
+    DECnet: number,
+    RXRPC: number,
+    NETBEUI: number,
+    NFC: number,
+    ALG: number,
+    IEEE802154: number,
+    ISDN: number,
+    XDP: number,
+    LOCAL: number,
+    BLUETOOTH: number,
+    CAN: number,
+    LLC: number,
+    APPLETALK: number,
+    PPPOX: number,
+    ATMPVC: number,
+    AX25: number,
+    ECONET: number,
+    IRDA: number,
+    SECURITY: number,
+    X25: number, 
+}]
+ADDRF: <table>
+```
+### SOCKF
+Table of socket flags.
+```luau tooltips
+-- @hover: (9,14)[<table> = {
+    DCCP: number,
+    RAW: number,
+    RDM: number,
+    DGRAM: number,
+    PACKET: number,
+    STREAM: number,
+    SEQPACKET: number,
+    CLOEXEC: number,
+    NONBLOCK: number, 
+}]
+SOCKF: <table>
+```
+### SOCKOPT
+Table of socket options.
+```luau tooltips
+-- @hover: (11,16)[<table> = {
+    ATTACH_FILTER: number,
+    CNX_ADVICE: number,
+    PEERCRED: number,
+    LINGER: number,
+    DEBUG: number,
+    RXQ_OVFL: number,
+    SNDBUF: number,
+    DONTROUTE: number,
+    ZEROCOPY: number,
+    PASSCRED: number,
+    DETACH_REUSEPORT_BPF: number,
+    ATTACH_REUSEPORT_EBPF: number,
+    MEMINFO: number,
+    COOKIE: number,
+    SNDBUFFORCE: number,
+    PRIORITY: number,
+    BSDCOMPAT: number,
+    SNDTIMEO: number,
+    BINDTODEVICE: number,
+    OOBINLINE: number,
+    BPF_EXTENSIONS: number,
+    TIMESTAMP_NEW: number,
+    NO_CHECK: number,
+    WIFI_STATUS: number,
+    PEERGROUPS: number,
+    TYPE: number,
+    NOFCS: number,
+    DOMAIN: number,
+    TIMESTAMPNS_NEW: number,
+    SNDLOWAT: number,
+    KEEPALIVE: number,
+    PEEK_OFF: number,
+    PEERSEC: number,
+    PEERNAME: number,
+    RCVBUF: number,
+    REUSEPORT: number?,
+    INCOMING_NAPI_ID: number,
+    TIMESTAMPING_OLD: number,
+    RCVBUFFORCE: number,
+    REUSEADDR: number,
+    MAX_PACING_RATE: number,
+    MARK: number,
+    RCVTIMEO_NEW: number,
+    BUSY_POLL: number,
+    TIMESTAMPING_NEW: number,
+    BINDTOIFINDEX: number,
+    TXTIME: number,
+    SECURITY_ENCRYPTION_NETWORK: number,
+    LOCK_FILTER: number,
+    RCVLOWAT: number,
+    SECURITY_ENCRYPTION_TRANSPORT: number,
+    ATTACH_BPF: number,
+    INCOMING_CPU: number,
+    ERROR: number,
+    SELECT_ERR_QUEUE: number,
+    DETACH_BPF: number,
+    SNDTIMEO_NEW: number,
+    TIMESTAMPNS_OLD: number,
+    PASSSEC: number,
+    TIMESTAMP_OLD: number,
+    GET_FILTER: number,
+    DETACH_FILTER: number,
+    ATTACH_REUSEPORT_CBPF: number,
+    BROADCAST: number,
+    SECURITY_AUTHENTICATION: number,
+    PROTOCOL: number,
+    ACCEPTCONN: number,
+    RCVTIMEO: number, 
+}]
+SOCKOPT: <table>
+```
+### SOCKOPTLV
+Table of socket option levels.
+```luau tooltips
+-- @hover: (13,18)[<table> = {
+    PPPOL2TP: number,
+    RDS: number,
+    TIPC: number,
+    ALG: number,
+    PNPIPE: number,
+    BLUETOOTH: number,
+    PACKET: number,
+    IPV6: number,
+    KCM: number,
+    RXRPC: number,
+    NETBEUI: number,
+    DECNET: number,
+    TLS: number,
+    ICMPV6: number,
+    RAW: number,
+    XDP: number,
+    SOCKET: number,
+    LLC: number,
+    NFC: number,
+    CAIF: number,
+    IUCV: number,
+    X25: number,
+    AAL: number,
+    NETLINK: number,
+    DCCP: number,
+    IRDA: number,
+    ATM: number,
+    IP: number, 
+}]
+SOCKOPTLV: <table>
+```
+### IPPROTO
+Table of IP protocols.
+```luau tooltips
+-- @hover: (11,16)[<table> = {
+    COMP: number,
+    ICMP: number,
+    ESP: number,
+    IGMP: number,
+    TCP: number,
+    ICMPV6: number,
+    MTP: number,
+    GRE: number,
+    SCTP: number,
+    MAX: number,
+    NONE: number,
+    FRAGMENT: number,
+    IDP: number,
+    UDPLITE: number,
+    HOPOPTS: number,
+    MH: number,
+    BEETPH: number,
+    AH: number,
+    IPIP: number,
+    IPV6: number,
+    PIM: number,
+    DSTOPTS: number,
+    UDP: number,
+    DCCP: number,
+    RAW: number,
+    PUP: number,
+    MPLS: number,
+    ENCAP: number,
+    RSVP: number,
+    ROUTING: number,
+    EGP: number,
+    TP: number,
+    IP: number, 
+}]
+IPPROTO: <table>
+```
+## Functions
+### createSocket
+Creates a new socket from OS.
+```luau tooltips
+-- @link: (72,85)[../objects/NetworkSocket]
+createSocket(address_family: number, flags: number, protocol: number): NetworkSocket
+```
+<details open>
+<summary>Parameters</summary>
+- `address_family: number{:luau}` - The address family to use.
+- `flags: number{:luau}` - The socket type to use.
+- `protocol: number{:luau}` - The protocol to use.
+</details>
+<details>
+<summary>Throws</summary>
+- IO Error
+- Network Error
+</details>
+
+### getAddressList
+Gets a list of addresses for the provided name and port.
+```luau tooltips
+-- @hover: (46,60)[export type NetworkAddress = {
+    family: number,
+    port: number,
+    address: string, 
+}]
+getAddressList(name: string, port: number): {NetworkAddress}
+```
+<details open>
+<summary>Parameters</summary>
+- `name: string{:luau}` - The name to resolve.
+- `port: number{:luau}` - The port to resolve.
+</details>
+<details>
+<summary>Throws</summary>
+- IO Error
+</details>
+
+## Namespaces
+### http
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### serve
+Starts a new HTTP server.
+```luau tooltips
+-- @hover: (18,34)[-- references:
+-- @link: (8,21)[../objects/HttpWebSocket]
+-- (1) HttpWebSocket
+-- @link: (8,22)[../objects/TlsCertKeyPair]
+-- (2) TlsCertKeyPair
+
+export type HttpServerResponse = {
+    status_code: number,
+    headers: {
+        [string]: string
+    }?,
+    body: (string | buffer)?, 
+}
+
+export type HttpServerRequest = {
+    method: string,
+    path: string,
+    raw_path: string,
+    query: {
+        [string | number]: string
+    },
+    headers: {
+        [string]: string
+    },
+    body: string?, 
+}
+
+export type ServerWebSocketHandlers = {
+    upgrade: ((request: HttpServerRequest) -> boolean)?,
+    open: ((websocket: HttpWebSocket) -> ())?,
+    message: ((websocket: HttpWebSocket, message: string) -> ())?,
+    close: ((websocket: HttpWebSocket, code: number) -> ())?, 
+}
+
+export type HttpServeOptions = {
+    port: number,
+    address: string?,
+    reuse_address: boolean?,
+    backlog: number?,
+    max_body_size: number?,
+    max_header_size: number?,
+    max_headers: number?,
+    client_timeout: number?,
+    max_connections: number?,
+    request: (request: HttpServerRequest) -> string | buffer | HttpServerResponse,
+    websocket: ServerWebSocketHandlers?,
+    tls: {
+        auth: TlsCertKeyPair?, 
+    }?, 
+}]
+-- @link: (37,47)[../objects/HttpServer]
+http.serve(opts: HttpServeOptions): HttpServer
+```
+<details open>
+<summary>Parameters</summary>
+- `opts: HttpServeOptions{:luau}` - The options for the server.
+  - `port: number{:luau}` - The port to listen on.
+  - `address: string?{:luau}` - The address to bind to.
+    - default: `"127.0.0.1"{:luau}`
+  - `reuse_address: boolean?{:luau}` - Whether to reuse the address.
+    - default: `false{:luau}`
+  - `backlog: number?{:luau}` - The maximum number of connections the server will backlog to the OS.
+    - default: `128{:luau}`
+  - `max_body_size: number?{:luau}` - The maximum size of the request body.
+    - default: `1048576{:luau}`
+  - `max_header_size: number?{:luau}` - The maximum size of the request headers for the parser.
+    - default: `4092{:luau}`
+  - `max_headers: number?{:luau}` - The maximum number of headers to parse from the request.
+    - default: `100{:luau}`
+  - `client_timeout: number?{:luau}` - The timeout for the client.
+    - default: `60{:luau}`
+  - `max_connections: number?{:luau}` - The maximum number of connections.
+    - `0` for no limit
+    - default: `1024{:luau}`
+  - `request: (request: HttpServerRequest) -> string | buffer | HttpServerResponse{:luau}` - The function to call when a request is received.
+    - If a `HttpServerResponse` is returned, it will be sent as the response.
+    - If a `string` or `buffer` is returned, it will be sent as the response body with a `200 OK` status.
+  - `websocket: ServerWebSocketHandlers?{:luau}` - The handlers for WebSocket connections.
+  - `tls: {auth: TlsCertKeyPair?, }?{:luau}` - Tls options for the server.
+</details>
+<details>
+<summary>Throws</summary>
+- IO Error
+- Network Error
+</details>
+
+#### request
+Makes a request to the specified host.
+
+Options are optional, defaults to GET request.
+```luau tooltips
+-- @hover: (29,41)[export type HttpResponse<T> = {
+    ok: boolean,
+    status_code: number,
+    status_reason: string,
+    headers: {
+        [string]: string
+    },
+    body: T, 
+}]
+http.request(host: string): HttpResponse<string>
+-- @hover: (71,83)[export type HttpResponse<T> = {
+    ok: boolean,
+    status_code: number,
+    status_reason: string,
+    headers: {
+        [string]: string
+    },
+    body: T, 
+}]
+-- @hover: (34,52)[-- references:
+-- @link: (8,21)[../objects/TlsCertBundle]
+-- (1) TlsCertBundle
+
+export type HttpRequestOptions = {
+    headers: {
+        [string]: string
+    }?,
+    method: ("GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH")?,
+    body: (string | buffer)?,
+    allow_redirects: boolean?,
+    timeout: number?,
+    max_body_size: number?,
+    max_header_size: number?,
+    max_headers: number?,
+    tls: {
+        host: string?,
+        ca: TlsCertBundle?, 
+    }?, 
+}]
+http.request(host: string, opts: HttpRequestOptions?, bytes: false?): HttpResponse<string>
+-- @hover: (34,52)[-- references:
+-- @link: (8,21)[../objects/TlsCertBundle]
+-- (1) TlsCertBundle
+
+export type HttpRequestOptions = {
+    headers: {
+        [string]: string
+    }?,
+    method: ("GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH")?,
+    body: (string | buffer)?,
+    allow_redirects: boolean?,
+    timeout: number?,
+    max_body_size: number?,
+    max_header_size: number?,
+    max_headers: number?,
+    tls: {
+        host: string?,
+        ca: TlsCertBundle?, 
+    }?, 
+}]
+-- @hover: (69,81)[export type HttpResponse<T> = {
+    ok: boolean,
+    status_code: number,
+    status_reason: string,
+    headers: {
+        [string]: string
+    },
+    body: T, 
+}]
+http.request(host: string, opts: HttpRequestOptions?, bytes: true): HttpResponse<buffer>
+-- @hover: (34,52)[-- references:
+-- @link: (8,21)[../objects/TlsCertBundle]
+-- (1) TlsCertBundle
+
+export type HttpRequestOptions = {
+    headers: {
+        [string]: string
+    }?,
+    method: ("GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH")?,
+    body: (string | buffer)?,
+    allow_redirects: boolean?,
+    timeout: number?,
+    max_body_size: number?,
+    max_header_size: number?,
+    max_headers: number?,
+    tls: {
+        host: string?,
+        ca: TlsCertBundle?, 
+    }?, 
+}]
+-- @hover: (73,85)[export type HttpResponse<T> = {
+    ok: boolean,
+    status_code: number,
+    status_reason: string,
+    headers: {
+        [string]: string
+    },
+    body: T, 
+}]
+http.request(host: string, opts: HttpRequestOptions?, bytes: boolean?): HttpResponse<string | buffer>
+```
+<details open>
+<summary>Parameters</summary>
+- `host: string{:luau}` - The host to make the request to.
+- `opts: HttpRequestOptions?{:luau}` - The options for the request.
+  - `headers: {[string]: string}?{:luau}`
+  - `method: ("GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH")?{:luau}`
+    - default: `"GET"{:luau}`
+  - `body: (string | buffer)?{:luau}`
+  - `allow_redirects: boolean?{:luau}`
+    - default: `true{:luau}`
+  - `timeout: number?{:luau}` - The timeout for the request in seconds.
+    - If the timeout is zero, the request will never timeout.
+    - default: `30{:luau}`
+  - `max_body_size: number?{:luau}` - The maximum size of the response body.
+    - default: `1_048_576{:luau}`
+  - `max_header_size: number?{:luau}` - The maximum size of the response headers for the parser.
+    - default: `4096{:luau}`
+  - `max_headers: number?{:luau}` - The maximum number of headers to parse from the response.
+    - default: `100{:luau}`
+  - `tls: {host: string?, ca: TlsCertBundle?, }?{:luau}` - Tls options for the request.
+- `bytes: false? | true | boolean?{:luau}` - Whether to return the response body as a buffer or string.
+</details>
+<details>
+<summary>Throws</summary>
+- Request Error
+- Network Error
+</details>
+
+#### websocket
+```luau tooltips
+-- @hover: (36,56)[-- references:
+-- @link: (8,21)[../objects/HttpWebSocket]
+-- (1) HttpWebSocket
+-- @link: (8,21)[../objects/TlsCertBundle]
+-- (2) TlsCertBundle
+
+export type HttpServerResponse = {
+    status_code: number,
+    headers: {
+        [string]: string
+    }?,
+    body: (string | buffer)?, 
+}
+
+export type HttpWebSocketOptions = {
+    headers: {
+        [string]: string
+    }?,
+    protocols: {string}?,
+    timeout: number?,
+    accept: ((socket: HttpWebSocket, request: HttpServerResponse) -> boolean)?,
+    open: ((socket: HttpWebSocket) -> ())?,
+    close: ((socket: HttpWebSocket, close: number?) -> ())?,
+    message: ((socket: HttpWebSocket, message: string) -> ())?,
+    tls: {
+        host: string?,
+        ca: TlsCertBundle?, 
+    }?, 
+}]
+-- @link: (59,72)[../objects/HttpWebSocket]
+http.websocket(host: string, opts: HttpWebSocketOptions): HttpWebSocket
+```
+<details open>
+<summary>Parameters</summary>
+- `host: string{:luau}` - The host to connect to.
+- `opts: HttpWebSocketOptions{:luau}` - The options for the WebSocket.
+  - `headers: {[string]: string}?{:luau}`
+  - `protocols: {string}?{:luau}` - The protocols to send to the server.
+  - `timeout: number?{:luau}` - The timeout for the WebSocket connection.
+    - If the timeout is negative, the WebSocket will never timeout.
+    - default: `30{:luau}`
+  - `accept: ((socket: HttpWebSocket, request: HttpServerResponse) -> boolean)?{:luau}` - The function to call to accept the WebSocket connection.
+  - `open: ((socket: HttpWebSocket) -> ())?{:luau}` - The function to call when the WebSocket connection is opened.
+  - `close: ((socket: HttpWebSocket, close: number?) -> ())?{:luau}` - The function to call when the WebSocket connection is closed.
+  - `message: ((socket: HttpWebSocket, message: string) -> ())?{:luau}` - The function to call when a message is received.
+  - `tls: {host: string?, ca: TlsCertBundle?, }?{:luau}` - Tls options for the WebSocket connection.
+</details>
+<details>
+<summary>Throws</summary>
+- WebSocket Error
+- Network Error
+</details>

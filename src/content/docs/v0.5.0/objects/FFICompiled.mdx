@@ -1,0 +1,33 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# FFICompiled
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+## Methods
+### getSymbol
+```luau tooltips
+-- @link: (29,39)[../objects/FFIPointer]
+:getSymbol(symbol: string): FFIPointer?
+```
+<details open>
+<summary>Parameters</summary>
+- `symbol: string{:luau}` - The symbol to get.
+</details>
+<details>
+<summary>Throws</summary>
+- FFI Error
+- Memory Error
+</details>
+
+### listSymbols
+Lists all symbols in the compiled object.
+```luau tooltips
+:listSymbols(): {string}
+```
+<details>
+<summary>Throws</summary>
+- FFI Error
+- Memory Error
+</details>

@@ -1,0 +1,27 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# SQLite3
+`zune.sqlite`
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+A library to interact with SQLite3 databases.
+
+## Functions
+### open
+Opens a SQLite3 database.
+```luau tooltips
+-- @link: (22,37)[../objects/SQLite3Database]
+open(path: string?): SQLite3Database
+```
+<details open>
+<summary>Parameters</summary>
+- `path: string?{:luau}` - The path to the database file.
+  - default: `":memory:"{:luau}`
+</details>
+<details>
+<summary>Throws</summary>
+- SQLite3 Error
+- Memory Error
+</details>

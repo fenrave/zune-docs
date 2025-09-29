@@ -1,0 +1,437 @@
+{/* This file was auto-generated with "zune-docs" */}
+
+# Cryptography
+`zune.crypto`
+
+---
+import { Callout, Tabs } from 'nextra/components'
+
+A library to do cryptographic operations in luau. Provides functions for hashing, aead, tls, and secure random number generation.
+
+## Functions
+### createHash
+```luau tooltips
+-- @hover: (23,43)[export type CryptoHashAlgorithms = 
+    | "sha1"
+    | "md5"
+    | "blake3"
+    | "sha224"
+    | "sha256"
+    | "sha384"
+    | "sha512"
+    | "sha3_224"
+    | "sha3_256"
+    | "sha3_384"
+    | "sha3_512"
+    | "blake2b128"
+    | "blake2b160"
+    | "blake2b256"
+    | "blake2b384"
+    | "blake2b512"
+    | "blake2s128"
+    | "blake2s160"
+    | "blake2s224"
+    | "blake2s256"]
+-- @link: (63,73)[../objects/CryptoHash]
+createHash(algorithm: CryptoHashAlgorithms, secret: string?): CryptoHash
+```
+<details open>
+<summary>Parameters</summary>
+- `algorithm: CryptoHashAlgorithms{:luau}`
+- `secret: string?{:luau}`
+</details>
+
+## Namespaces
+### password
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### hash
+```luau tooltips
+-- @hover: (48,69)[type BcryptPasswordOptions = {
+    algorithm: "bcrypt"?,
+    cost: number?, 
+}
+
+type Argon2PasswordOptions = {
+    algorithm: ("argon2d" | "argon2i" | "argon2id")?,
+    time_cost: number?,
+    memory_cost: number?,
+    threads: number?, 
+}
+
+export type CryptoPasswordOptions = BcryptPasswordOptions | Argon2PasswordOptions]
+password.hash(password: string | buffer, opts: CryptoPasswordOptions?): string
+```
+<details open>
+<summary>Parameters</summary>
+- `password: string | buffer{:luau}` - The password to hash.
+- `opts: CryptoPasswordOptions?{:luau}` - The options for the password hashing.
+</details>
+<details>
+<summary>Throws</summary>
+- Crypto Error
+- Memory Error
+</details>
+
+#### verify
+```luau tooltips
+password.verify(password: string | buffer, hash: string | buffer): boolean
+```
+<details open>
+<summary>Parameters</summary>
+- `password: string | buffer{:luau}` - The password to verify.
+- `hash: string | buffer{:luau}` - The hash to verify against.
+</details>
+<details>
+<summary>Throws</summary>
+- Crypto Error
+</details>
+
+### uuid
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### v4
+```luau tooltips
+uuid.v4(): string
+```
+
+#### v7
+```luau tooltips
+uuid.v7(): string
+```
+
+### random
+Cryptographically secure random number generator.
+
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### nextNumber
+Generates a random number (f64).
+
+If no arguments are provided, the function will generate a number between 0 and 1.
+```luau tooltips
+random.nextNumber(): number
+random.nextNumber(min: number, max: number): number
+```
+<details open>
+<summary>Parameters</summary>
+- `min: number?{:luau}` - The minimum value (inclusive).
+- `max: number?{:luau}` - The maximum value (inclusive).
+</details>
+<details>
+<summary>Throws</summary>
+- Range Error
+</details>
+
+#### nextInteger
+Generates a random integer.
+
+If no arguments are provided, the function will generate a number between the limits of a signed 32-bit integer.
+```luau tooltips
+random.nextInteger(): number
+random.nextInteger(min: number, max: number): number
+```
+<details open>
+<summary>Parameters</summary>
+- `min: number?{:luau}` - The minimum value (inclusive).
+- `max: number?{:luau}` - The maximum value (inclusive).
+</details>
+<details>
+<summary>Throws</summary>
+- Range Error
+</details>
+
+#### nextBoolean
+Generates a random boolean.
+```luau tooltips
+random.nextBoolean(): boolean
+```
+
+#### fill
+Write random bytes to the buffer.
+```luau tooltips
+random.fill(buffer: buffer, offset: number, length: number): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `buffer: buffer{:luau}` - The buffer to write to.
+- `offset: number{:luau}` - The offset to start writing at.
+- `length: number{:luau}` - The number of bytes to write.
+</details>
+<details>
+<summary>Throws</summary>
+- Range Error
+- Crypto Error
+- Buffer Error
+</details>
+
+### aead
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`NAMESPACES`</u></h4>
+#### aes_gcm
+```luau tooltips
+-- @hover: (24,29)[type EncryptedData = {
+    cipher: buffer,
+    tag: buffer, 
+}
+
+type Input = string | buffer
+
+<table> = {
+    Aes128Gcm: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aes256Gcm: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    }, 
+}]
+aead.aes_gcm.aes_gcm: <table>
+```
+#### aes_ocb
+```luau tooltips
+-- @hover: (24,29)[type EncryptedData = {
+    cipher: buffer,
+    tag: buffer, 
+}
+
+type Input = string | buffer
+
+<table> = {
+    Aes128Ocb: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aes256Ocb: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    }, 
+}]
+aead.aes_ocb.aes_ocb: <table>
+```
+#### aegis
+```luau tooltips
+-- @hover: (20,25)[type EncryptedData = {
+    cipher: buffer,
+    tag: buffer, 
+}
+
+type Input = string | buffer
+
+<table> = {
+    Aegis128X4: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis128X2: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis128L: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis256X4: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis256X2: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis128X4_256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis128X2_256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis128L_256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis256X4_256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis256X2_256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    Aegis256_256: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    }, 
+}]
+aead.aegis.aegis: <table>
+```
+#### chacha_poly
+```luau tooltips
+-- @hover: (32,37)[type EncryptedData = {
+    cipher: buffer,
+    tag: buffer, 
+}
+
+type Input = string | buffer
+
+<table> = {
+    ChaCha8Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    ChaCha12Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    ChaCha20Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    XChaCha8Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    XChaCha12Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    },
+    XChaCha20Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    }, 
+}]
+aead.chacha_poly.chacha_poly: <table>
+```
+#### salsa_poly
+```luau tooltips
+-- @hover: (30,35)[type EncryptedData = {
+    cipher: buffer,
+    tag: buffer, 
+}
+
+type Input = string | buffer
+
+<table> = {
+    XSalsa20Poly1305: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    }, 
+}]
+aead.salsa_poly.salsa_poly: <table>
+```
+#### isap
+```luau tooltips
+-- @hover: (18,23)[type EncryptedData = {
+    cipher: buffer,
+    tag: buffer, 
+}
+
+type Input = string | buffer
+
+<table> = {
+    IsapA128A: {
+        encrypt: (data: Input, key: Input, nonce: Input, ad: Input?) -> EncryptedData,
+        decrypt: (cipher: Input, tag: Input, key: Input, nonce: Input, ad: Input?) -> string, 
+    }, 
+}]
+aead.isap.isap: <table>
+```
+### tls
+---
+<h4 className="x:text-slate-900 x:dark:text-slate-100 x:mt-8 x:text-xl"><u>`FUNCTIONS`</u></h4>
+#### bundleFromSystem
+```luau tooltips
+-- @link: (25,38)[../objects/TlsCertBundle]
+tls.bundleFromSystem(): TlsCertBundle
+```
+<details>
+<summary>Throws</summary>
+- IO Error
+- Tls Error
+</details>
+
+#### bundleFromFile
+```luau tooltips
+-- @link: (35,48)[../objects/TlsCertBundle]
+tls.bundleFromFile(file: string): TlsCertBundle
+```
+<details open>
+<summary>Parameters</summary>
+- `file: string{:luau}` - The file to load the bundle from.
+</details>
+<details>
+<summary>Throws</summary>
+- IO Error
+</details>
+
+#### keyPairFromFile
+```luau tooltips
+-- @link: (57,71)[../objects/TlsCertKeyPair]
+tls.keyPairFromFile(certFile: string, keyFile: string): TlsCertKeyPair
+```
+<details open>
+<summary>Parameters</summary>
+- `certFile: string{:luau}` - The certificate file.
+- `keyFile: string{:luau}` - The key file.
+</details>
+<details>
+<summary>Throws</summary>
+- IO Error
+- Tls Error
+</details>
+
+#### setupClient
+```luau tooltips
+-- @hover: (48,69)[-- references:
+-- @link: (8,21)[../objects/TlsCertBundle]
+-- (1) TlsCertBundle
+
+export type CryptoTlsClientConfig = {
+    host: string,
+    ca: TlsCertBundle, 
+}]
+-- @link: (25,38)[../objects/NetworkSocket]
+tls.setupClient(socket: NetworkSocket, config: CryptoTlsClientConfig): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `socket: NetworkSocket{:luau}` - The socket to setup the client on.
+- `config: CryptoTlsClientConfig{:luau}` - The configuration for the client.
+  - `host: string{:luau}` - The host.
+  - `ca: TlsCertBundle{:luau}` - The CA bundle to use for verification.
+</details>
+<details>
+<summary>Throws</summary>
+- Tls Error
+- Memory Error
+</details>
+
+#### setupServer
+```luau tooltips
+-- @hover: (48,69)[-- references:
+-- @link: (8,22)[../objects/TlsCertKeyPair]
+-- (1) TlsCertKeyPair
+
+export type CryptoTlsServerConfig = {
+    auth: TlsCertKeyPair, 
+}]
+-- @link: (25,38)[../objects/NetworkSocket]
+tls.setupServer(socket: NetworkSocket, config: CryptoTlsServerConfig): ()
+```
+<details open>
+<summary>Parameters</summary>
+- `socket: NetworkSocket{:luau}` - The socket to setup the server on.
+- `config: CryptoTlsServerConfig{:luau}` - The configuration for the server.
+  - `auth: TlsCertKeyPair{:luau}` - The certificate and key pair to use for the server.
+</details>
+<details>
+<summary>Throws</summary>
+- Tls Error
+- Memory Error
+</details>
