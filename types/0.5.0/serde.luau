@@ -78,6 +78,7 @@ type Base64Encoder = {
     --- @throws Memory Error
     decode:
         & ((base64: string) -> string)
+        & ((base64: buffer) -> buffer)
         & ((base64: string | buffer) -> string | buffer),
 }
 
@@ -90,7 +91,6 @@ type CompressionFn =
     & ((raw: string) -> string)
     & ((raw: buffer) -> buffer)
     & ((raw: string | buffer) -> string | buffer)
-
 
 type AdvancedCompressionFn =
     & ((raw: string, opts: SerdeGenericCompressionOptions?) -> string)
