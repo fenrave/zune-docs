@@ -52,7 +52,7 @@ type TomlEncoder = {
 }
 
 type YamlInput = string | number | boolean | {[string]: YamlInput}
-type YamlOuput = string | {[string]: YamlOuput}
+type YamlOutput = string | {[string]: YamlOutput}
 
 type YamlEncoder = {
     --- Encodes a value to YAML.
@@ -62,7 +62,7 @@ type YamlEncoder = {
     --- Decodes YAML.
     --- @param yaml The YAML string to decode.
     --- @throws Memory Error
-    decode: (yaml: string | buffer) -> YamlOuput,
+    decode: (yaml: string | buffer) -> YamlOutput,
 }
 
 type Base64Encoder = {
