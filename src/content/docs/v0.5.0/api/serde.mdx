@@ -191,10 +191,10 @@ yaml.encode(object: YamlInput): string
 #### decode
 Decodes YAML.
 ```luau tooltips
--- @hover: (37,46)[type YamlOuput = string | {
-    [string]: YamlOuput
+-- @hover: (37,47)[type YamlOutput = string | {
+    [string]: YamlOutput
 }]
-yaml.decode(yaml: string | buffer): YamlOuput
+yaml.decode(yaml: string | buffer): YamlOutput
 ```
 <details open>
 <summary>Parameters</summary>
@@ -228,11 +228,12 @@ base64.encode(value: string | buffer): string | buffer
 Decodes a Base64 string.
 ```luau tooltips
 base64.decode(base64: string): string
+base64.decode(base64: buffer): buffer
 base64.decode(base64: string | buffer): string | buffer
 ```
 <details open>
 <summary>Parameters</summary>
-- `base64: string | string | buffer{:luau}` - The Base64 value to decode.
+- `base64: string | buffer{:luau}` - The Base64 value to decode.
 </details>
 <details>
 <summary>Throws</summary>

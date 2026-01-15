@@ -114,6 +114,15 @@ export type ProcessRunResult<T> = ProcessResult & {
     stderr: T, 
 }]
 run(exec: string, args: {string}?): ProcessRunResult<string>
+-- @hover: (72,88)[export type ProcessResult = {
+    ok: boolean,
+    code: number, 
+}
+
+export type ProcessRunResult<T> = ProcessResult & {
+    stdout: T,
+    stderr: T, 
+}]
 -- @hover: (42,56)[export type ProcessOptions = {
     cwd: string?,
     env: {
@@ -124,7 +133,18 @@ run(exec: string, args: {string}?): ProcessRunResult<string>
     stdout: ("inherit" | "pipe" | "ignore")?,
     stderr: ("inherit" | "pipe" | "ignore")?, 
 }]
--- @hover: (75,91)[export type ProcessResult = {
+run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: nil): ProcessRunResult<string?>
+-- @hover: (42,56)[export type ProcessOptions = {
+    cwd: string?,
+    env: {
+        [string]: string
+    }?,
+    shell: (boolean | string)?,
+    stdin: ("inherit" | "pipe" | "ignore")?,
+    stdout: ("inherit" | "pipe" | "ignore")?,
+    stderr: ("inherit" | "pipe" | "ignore")?, 
+}]
+-- @hover: (74,90)[export type ProcessResult = {
     ok: boolean,
     code: number, 
 }
@@ -133,7 +153,7 @@ export type ProcessRunResult<T> = ProcessResult & {
     stdout: T,
     stderr: T, 
 }]
-run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: false?): ProcessRunResult<string?>
+run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: false): ProcessRunResult<string?>
 -- @hover: (42,56)[export type ProcessOptions = {
     cwd: string?,
     env: {
@@ -164,7 +184,7 @@ run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: true): ProcessR
     stdout: ("inherit" | "pipe" | "ignore")?,
     stderr: ("inherit" | "pipe" | "ignore")?, 
 }]
--- @hover: (77,93)[export type ProcessResult = {
+-- @hover: (76,92)[export type ProcessResult = {
     ok: boolean,
     code: number, 
 }
@@ -173,7 +193,7 @@ export type ProcessRunResult<T> = ProcessResult & {
     stdout: T,
     stderr: T, 
 }]
-run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: boolean?): ProcessRunResult<string | buffer?>
+run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: boolean): ProcessRunResult<string | buffer?>
 ```
 <details open>
 <summary>Parameters</summary>
@@ -186,7 +206,7 @@ run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: boolean?): Proc
   - `stdin: ("inherit" | "pipe" | "ignore")?{:luau}` - The stdin configuration for the process.
   - `stdout: ("inherit" | "pipe" | "ignore")?{:luau}` - The stdout configuration for the process.
   - `stderr: ("inherit" | "pipe" | "ignore")?{:luau}` - The stderr configuration for the process.
-- `bytes: false? | true | boolean?{:luau}`
+- `bytes: nil | false | true | boolean?{:luau}`
 </details>
 <details>
 <summary>Throws</summary>

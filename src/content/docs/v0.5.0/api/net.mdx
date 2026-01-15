@@ -378,7 +378,37 @@ Options are optional, defaults to GET request.
     body: T, 
 }]
 http.request(host: string): HttpResponse<string>
--- @hover: (71,83)[export type HttpResponse<T> = {
+-- @hover: (34,52)[-- references:
+-- @link: (8,21)[../objects/TlsCertBundle]
+-- (1) TlsCertBundle
+
+export type HttpRequestOptions = {
+    headers: {
+        [string]: string
+    }?,
+    method: ("GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH")?,
+    body: (string | buffer)?,
+    allow_redirects: boolean?,
+    timeout: number?,
+    max_body_size: number?,
+    max_header_size: number?,
+    max_headers: number?,
+    tls: {
+        host: string?,
+        ca: TlsCertBundle?, 
+    }?, 
+}]
+-- @hover: (68,80)[export type HttpResponse<T> = {
+    ok: boolean,
+    status_code: number,
+    status_reason: string,
+    headers: {
+        [string]: string
+    },
+    body: T, 
+}]
+http.request(host: string, opts: HttpRequestOptions?, bytes: nil): HttpResponse<string>
+-- @hover: (70,82)[export type HttpResponse<T> = {
     ok: boolean,
     status_code: number,
     status_reason: string,
@@ -407,7 +437,7 @@ export type HttpRequestOptions = {
         ca: TlsCertBundle?, 
     }?, 
 }]
-http.request(host: string, opts: HttpRequestOptions?, bytes: false?): HttpResponse<string>
+http.request(host: string, opts: HttpRequestOptions?, bytes: false): HttpResponse<string>
 -- @hover: (34,52)[-- references:
 -- @link: (8,21)[../objects/TlsCertBundle]
 -- (1) TlsCertBundle
@@ -438,6 +468,15 @@ export type HttpRequestOptions = {
     body: T, 
 }]
 http.request(host: string, opts: HttpRequestOptions?, bytes: true): HttpResponse<buffer>
+-- @hover: (72,84)[export type HttpResponse<T> = {
+    ok: boolean,
+    status_code: number,
+    status_reason: string,
+    headers: {
+        [string]: string
+    },
+    body: T, 
+}]
 -- @hover: (34,52)[-- references:
 -- @link: (8,21)[../objects/TlsCertBundle]
 -- (1) TlsCertBundle
@@ -458,16 +497,7 @@ export type HttpRequestOptions = {
         ca: TlsCertBundle?, 
     }?, 
 }]
--- @hover: (73,85)[export type HttpResponse<T> = {
-    ok: boolean,
-    status_code: number,
-    status_reason: string,
-    headers: {
-        [string]: string
-    },
-    body: T, 
-}]
-http.request(host: string, opts: HttpRequestOptions?, bytes: boolean?): HttpResponse<string | buffer>
+http.request(host: string, opts: HttpRequestOptions?, bytes: boolean): HttpResponse<string | buffer>
 ```
 <details open>
 <summary>Parameters</summary>
@@ -489,7 +519,7 @@ http.request(host: string, opts: HttpRequestOptions?, bytes: boolean?): HttpResp
   - `max_headers: number?{:luau}` - The maximum number of headers to parse from the response.
     - default: `100{:luau}`
   - `tls: {host: string?, ca: TlsCertBundle?, }?{:luau}` - Tls options for the request.
-- `bytes: false? | true | boolean?{:luau}` - Whether to return the response body as a buffer or string.
+- `bytes: nil | false | true | boolean?{:luau}` - Whether to return the response body as a buffer or string.
 </details>
 <details>
 <summary>Throws</summary>
