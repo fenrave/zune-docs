@@ -103,6 +103,10 @@ div :is(html[class~="dark"] .dark\:nx-bg-primary-300\/10) {
     background-color: black !important;
 }
 
+.dark .x\:\[\&_mark\]\:text-white mark {
+    color: var(--x-color-black);
+}
+
 div .nx-bg-primary-700\/5 {
     background-color: rgb(216, 216, 216) !important;
 }
