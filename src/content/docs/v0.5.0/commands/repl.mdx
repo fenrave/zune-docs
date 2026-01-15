@@ -8,3 +8,16 @@ The `repl` command is used run a Read-Eval-Print Loop (REPL) in the current envi
 ```bash
 zune repl [...args]
 ```
+
+### Interactive
+
+Pressing `Ctrl` + `C` or signal `INTERRUPT` twice should exit the REPL, only while the REPL is in `INPUT` mode, if the REPL is executing luau code, it would be more unlikely for the REPL to respond.
+
+#### Example Interactive Session
+```bash
+>> zune repl
+zune 0.5.0+0.693
+> print("Hello, World!")
+Hello, World!
+> 
+```
